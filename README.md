@@ -1,64 +1,59 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# REST API for portfolio and CV
+A REST API built with PHP and Laravel as part of a headless CMS for my personal portfolio and CV. This is part of a school assignment where I'm learning how to build a REST API with PHP and consume it with JavaScript/TypeScript. 
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## The API
+The API has been developed with authentication using Laravel and Laravel Sanctum. A few routes are public for logging in and reading data. The routes for logging out and modifying data are protected.
 
-## About Laravel
+### Development server and database
+To server the development server use the command `php artisan serve` and to migrate the database tables use the command `php artisan migrate`. The database connection is set using a `.env`-file. Set your database information in `.env.example` and rename the file to `.env`. The migrations can be found in `database/migrations`.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Files and structure
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+#### Endpoints and routes
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Routes are set in `routes/api.php` using methods from different controllers. Some routes are protected using Laravel sanctum and some are public.
 
-## Learning Laravel
+**Public endpoints**
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+| Method | Path                        | Description                      |
+| ------ | --------------------------- | -------------------------------- |
+| POST   | ./api/login                 | Log in user in API               |
+| GET    | ./api/projects              | Get all projects                 |
+| GET    | ./api/skills                | Get all skills                   |
+| GET    | ./api/work-experiences      | Get all work experiences         |
+| GET    | ./api/education             | Get all programs/courses         |
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+**Protected endpoints**
 
-## Laravel Sponsors
+| Method | Path                        | Description                      |
+| ------ | --------------------------- | -------------------------------- |
+| POST   | ./api/logout                | Log out user from API            |
+| POST   | ./api/projects              | Create one project               |
+| PUT    | ./api/projects/{id}         | Update one project by id         |
+| DELETE | ./api/projects/{id}         | Delete one project by id         |
+| POST   | ./api/skills                | Create one skill                 |
+| PUT    | ./api/skills/{id}           | Update one skill by id           |
+| DELETE | ./api/skills/{id}           | Delete one skill by id           |
+| POST   | ./api/work-experiences      | Create one work experience       |
+| PUT    | ./api/work-experiences/{id} | Update one work experience by id |
+| DELETE | ./api/work-experiences/{id} | Delete one work experience by id |
+| POST   | ./api/education             | Create one program/course        |
+| PUT    | ./api/education/{id}        | Update one program/course by id  |
+| DELETE | ./api/education/{id}        | Delete one program/course by id  |
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+#### Models
 
-### Premium Partners
+There are a model for each object that connects to the database and can be found in `app/Models/`.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+#### Controllers
 
-## Contributing
+Each object has a controller that handles all the CRUD functionality connected to the models. The controllers handles all validation and can be found in `app/Http/Controllers`
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Project with three parts
 
-## Code of Conduct
+This API is part of a school assignment that has been developed in three separate parts. One REST API, one admin website with login to administrate it and a public website to read data from it.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+These repositories holds the rest of the project:
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- Admin website: https://github.com/sofiewallin/cv-admin
+- Public website: https://github.com/sofiewallin/cv-application
