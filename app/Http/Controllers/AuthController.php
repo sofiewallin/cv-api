@@ -9,28 +9,6 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    public function register(Request $request) 
-    {
-        $fields = $request->validate([
-            'username' => 'required|string|unique:users,username',
-            'password' => 'required|string'
-        ]);
-
-        $user = User::create([
-            'username' => $fields['username'],
-            'password' => bcrypt($fields['password'])
-        ]);
-
-        $token = $user->createToken('authentication-token')->plainTextToken;
-
-        $response = [
-            'user' => $user,
-            'token' => $token
-        ];
-
-        return response($response, 201);
-    }
-
     /**
      * Log in user.
      *

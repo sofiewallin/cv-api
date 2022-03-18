@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\SkillController;
+use App\Http\Controllers\WorkExperienceController;
+use App\Http\Controllers\EducationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
