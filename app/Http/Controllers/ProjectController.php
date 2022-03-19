@@ -58,8 +58,8 @@ class ProjectController extends Controller
             $new_image = str_replace(' ', '_', $file_name).'_'.rand().'_'.time().'.'.$file_extension;
             
             // Store file  
-            $file->storeAs('public/uploads', $new_image);
-            Storage::setVisibility($new_image, 'public');
+            $path = $file->storeAs('public/uploads', $new_image);
+            Storage::setVisibility($path, 'public');
 
             $request_data['logo'] = $new_image;
         }
